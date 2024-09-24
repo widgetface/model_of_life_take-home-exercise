@@ -1,6 +1,6 @@
 ## Task
 
-You are provided with a dataset of 200 DNA sequences, each 1000 base pairs long. Your task is to analyse these sequences and uncover any interesting patterns or properties. This should take between 15-60 minutes.
+You are provided with a [dataset of 200 DNA sequences](https://github.com/learningmodeloflife/take-home-exercise/edit/main/dna_sequences.json), each 1000 base pairs long. Your task is to analyse these sequences and uncover any interesting patterns or properties. This should take between 15-60 minutes.
 
 ### **File Format**
 
@@ -19,7 +19,9 @@ The dataset is stored as a JSON file. Here is the general structure of the file:
 
 ```
 
-### RequirementsImplement a Python script to analyse the sequences. Your script should:
+### Requirements
+
+Implement a Python script to analyse the sequences. Your script should:
 
 a. Calculate and report basic sequence statistics:
 
@@ -38,6 +40,6 @@ Your code should be well-commented and efficiently implemented.
 
 Provide a brief (max 300 words) write-up of your approach and findings.
 
-### Returning your exercise
+## Returning your exercise
 
 Please return a python script and write-up file as markdown to [Wilna Oosthuyzen](wilna.oosthuyzen@ed.ac.uk) by **Thursday 3rd October 18:00 UTC**.
