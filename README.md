@@ -1,3 +1,8 @@
+<div style="text-align: center;">
+ <a href="https://github.com/learningmodeloflife/management/wiki/Home"><img src="img/logo_black.png" alt="Learning Model of Life Logo" width="100" /></a>
+</div>
+<h1 style="text-align: center;">Learning Model of Life</h1>
+
 ## Task
 
 You are provided with a [dataset of 200 DNA sequences](https://github.com/learningmodeloflife/take-home-exercise/edit/main/dna_sequences.json), each 1000 base pairs long. Your task is to analyse these sequences and uncover any interesting patterns or properties. This should take between 15-60 minutes.
