@@ -44,8 +44,6 @@ d. Provide a brief summary of your findings, highlighting any sequences or patte
 
 Your code should be well-commented and efficiently implemented.
 
-Provide a brief (max 300 words) write-up of your approach and findings.
-
 ## Returning your exercise
 
 Please return a python script and write-up file as markdown to [Wilna Oosthuyzen](wilna.oosthuyzen@ed.ac.uk) by **Thursday 3rd October 18:00 UTC**.
