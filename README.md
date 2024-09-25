@@ -32,7 +32,8 @@ a. Calculate and report basic sequence statistics:
 
 * Overall GC content distribution
 * Dinucleotide frequencies
-* b. Identify the top 5 most common k-mers (substrings) for k=3, 4, and 5
+
+b. Identify the top 5 most common k-mers (substrings) for k=3, 4, and 5
 
 c. Detect any unusual patterns, such as:
 
