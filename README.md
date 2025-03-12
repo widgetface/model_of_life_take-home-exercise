@@ -1,5 +1,9 @@
 <div style="text-align: center;">
- <a href="https://github.com/learningmodeloflife/management/wiki/Home"><img src="img/logo_black.png" alt="Learning Model of Life Logo" width="100" /></a>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/learningmodeloflife/shared-files/blob/main/logo/svg/LML_logo_cream.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/learningmodeloflife/shared-files/blob/main/logo/svg/LML_logo.svg">
+    <img alt="LML Logo" width="100" height="100"src="https://github.com/learningmodeloflife/shared-files/blob/main/logo/svg/LML_logo.svg">
+  </picture>
 </div>
 <h1 style="text-align: center;">Learning Model of Life</h1>
 
@@ -32,7 +36,8 @@ a. Calculate and report basic sequence statistics:
 
 * Overall GC content distribution
 * Dinucleotide frequencies
-* b. Identify the top 5 most common k-mers (substrings) for k=3, 4, and 5
+
+b. Identify the top 5 most common k-mers (substrings) for k=3, 4, and 5
 
 c. Detect any unusual patterns, such as:
 
@@ -42,8 +47,6 @@ c. Detect any unusual patterns, such as:
 d. Provide a brief summary of your findings, highlighting any sequences or patterns that stand out.
 
 Your code should be well-commented and efficiently implemented.
-
-Provide a brief (max 300 words) write-up of your approach and findings.
 
 ## Returning your exercise
 
