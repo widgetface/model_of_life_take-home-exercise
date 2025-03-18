@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-To run tests please install pytest in a virtual environment and run the tests.
+To run the tests, please install pytest in a virtual environment and run the tests.
 
 `` pip install pytest ``
 
@@ -10,34 +10,36 @@ To run tests please install pytest in a virtual environment and run the tests.
 
 
 ## General programming approach
-To complete the task provided the following approach as taken. The DNA sequence file was loaded into the programme as a JSON object and the sequences analysed for:
+
+To complete the task provided the following approach as taken. The file provided was loaded into the programme as a JSON object and the sequences checked for length and composition. The DNA sequences were then analysed for:
 
 1. Number of each nucleotide (adenine, thymine, guanine, cytosine).
 
-2. Identification of Identify the top 5 most common k-mers (substrings) for k=2, 3, 4, and 5.
+2. Identification of the top 5 most common k-mers for k=2, 3, 4, and 5.
 
-3. longest palindromic sequence of 20 base pairs or over as defined by a forward strand aequence (5-3 ) = reverse strand sequence (3-5)complement being a palidrome of equal of over the threshold limit. 
+3. Longest palindromic sequence of 20 base pairs or over as defined by a forward strand sequence (5-3) equal to a reverse strand sequence (3-5) complement being a palidrome of equal of over 20 base pairs. 
 
 4. Some analysis of the longest "GC" and "AT" continuous sequences was also carried out.
 
-5. After DNA sequence analysis the results ere aggregated to provide totals for steps 1, 2, 3.
+5. After DNA sequence analysis the results were aggregated to provide totals for steps 1, 2, 3.
 
-6. The programme creates a simple markdown report.
+6. The programme created a simple markdown report.
 
 7. Tests were written for the functions used in the analysis.
 
+### Programme feature
 
-The best function I could come up with to determine of the longest palidromic sequence of a sequence had total time complexity of O(n^3).
+The best function I could come up with to determine the longest palindromic sequence of each DNA sequence had total time complexity of O(n^3).
 
 To allow the programme to run most efficiently the following steps were taken:
 
 1. The multiprocessing package was used to enable parallelization of the anlysis of the DNA sequences.
 
-2. The find_longest_palindrome function pre-computed the complement DNA sequence which reduced the overall time spent determining the longest palidromic sequence.
+2. The 'find_longest_palindrome' function pre-computed the complement DNA sequence which reduced the overall time spent determining the longest palidromic sequence.
 
 3. Code was optimized for speed while trying to maintain good readabilty.
 
-To enable maintainabilty type hinting was used throughout and the code heavily commented.
+To enable maintainabilty, type hinting was used throughout and the code heavily commented.
 
 ## DNA sequence analysis report.
 
@@ -89,7 +91,7 @@ Cytosine = 55556
 | ttttt| 314
 | cgggg| 301
 
-Total palindromes over 20 base pairs = 16
+Total palindromes equal to or over 20 base pairs = 16
 
 The longest palindrome was 34(bp) and had a sequence of TAAACGGGCCTTAATATATATTAAGGCCCGTTTA
 
@@ -112,17 +114,17 @@ The longest palindrome was 34(bp) and had a sequence of TAAACGGGCCTTAATATATATTAA
 | CGGCGCGCCCGCGGGCGCGCCG| 22
 | CCCGGGCGGGCGCCCGCCCGGG| 22
 
-## Analysis of DNA sequence analysis report
+## Analysis of the DNA sequence analysis report
 
 ### Overview of DNA sequences
 
 Of the 200 DNA sequences provided, 8 were found to contain letters other than A,T,G or C. This indicates that in those cases sequencing errors, ambiguous identification or base modifications (e.g 5-methylcytosine (5mC)) may have occurred.
 
-Overall the DNA sequences appear to be enriched in guanine (G) and cytosine (C) bases, having a GC content of 59.3% GC ((58281 + 55556)/ 192000).
+Overall the DNA sequences appear to be enriched in guanine (G) and cytosine (C) bases, having a GC content of 59.3%, ((58281 + 55556)/ 192000).
 
 This could  occur for many reasons including:
 
-1. Species specific composition if the DNA sequences originate from a particular species or genus. For example some microbial gemnomes tend to exhibit high GC contents but the causes of this variation have yet to be resolved ([ref 1]( https://www.sciencedirect.com/topics/)).
+1. Species specific composition of the DNA sequences originating from a particular species or genus. For example some microbial gemnomes tend to exhibit high GC contents,  but the causes of this variation have yet to be resolved ([ref 1]( https://www.sciencedirect.com/topics/)).
 
 2. Enrichment of genomic regions in GC. Promoter regions for example have a tendency to high GC content ([ref-2](https://pmc.ncbi.nlm.nih.gov/articles/PMC3514669/)).
 
@@ -130,13 +132,19 @@ This could  occur for many reasons including:
 
 ### K-mer analysis
 
-The k-mer analysis results for k=4 and k=5 also show that the most common are G, C or GC containing. 
+The k-mer analysis results also show that the most common are  G, C or GC containing. 
 
 ### Palindrome analysis
 
-The analysis found 16 DNA sequnces where palidromes ere of 20 base pair or over. This finding could occur due to  sequence artifacts which have been found to occur in PCR based sequencing approaches ([ref-4](https://bmcgenomics.biomedcentral.com/articles/10.1186/)). However, if these palidromic sequences are real they could be involved in are involved in a diverse processes that range from bacterial immune responses to the regulation of gene expression ([ref-5](https://www.sciencedirect.com/science/article/abs/pii/B9780128225639000652)). These palindromic sequnces are also often associated with amplified genes in both prokaryotes and eukaryotes ([ref-6](https://academic.oup.com/genetics/article-abstract/161/3/1065/6052570?redirectedFrom=fulltext)). Without further analysis it is difficult to expand more on this finding.
+The analysis found 16 DNA sequences where palindromes are of 20 base pairs or over. This finding could occur due to sequencing artifacts which have been found to occur in PCR based sequencing approaches ([ref-4](https://bmcgenomics.biomedcentral.com/articles/10.1186/)). 
 
-A short analysis running some of the longest palidromic sequences through the BLAST sequence alignamnt tool ([ref-7](https://blast.ncbi.nlm.nih.gov/Blast.cgi)), using default settings,  indicated many originated from bacteria and examples are provided below:
+However, if these palidromic sequences are real they could be involved in a diverse range of processes, including  bacterial immune responses to the regulation of gene expression in eukaryotes ([ref-5](https://www.sciencedirect.com/science/article/abs/pii/B9780128225639000652)). 
+
+Palindromic sequences are also often associated with amplified genes in both prokaryotes and eukaryotes ([ref-6](https://academic.oup.com/genetics/article-abstract/161/3/1065/6052570?redirectedFrom=fulltext)). 
+
+Without further information on the composition and preparation of the DNA sequence dataset and further analysis, it is difficult to expand more on this finding.
+
+A short analysis running some of the longest palindromic sequences through the BLAST sequence alignamnt tool ([ref-7](https://blast.ncbi.nlm.nih.gov/Blast.cgi)), using default settings,  indicated many originated from bacteria as shown below:
 
 | Sequence                   | Species | match percent
 | GGCCCGCAAATAATTATTTGCGGGCC | Pantoea dispersa strain (gram negative bacterium) | 100%
@@ -147,10 +155,10 @@ A short analysis running some of the longest palidromic sequences through the BL
 | GGGCCCGGGGCGCCCCGGGCCC |Thermus thermophilus (gram negative bacterium) | 100%|
 | CGGGGCCCCCCGGGGGGCCCCG|| Pantoea dispersa (gram negative bacterium)| 100% |
 
-Although the sequence alignment  analysis is cursory , the results along ith the enhnced GC content of the DNA sequences may indicate that many or all of the DNA sequences are of bacterial origin.  But more work woould be required to establish this assertion.
+Although the sequence alignment analysis is cursory, the results along with the enhanced GC content of the DNA sequences overall may indicate that many or all of the DNA sequences are of bacterial origin.  But more work would be required to establish this assertion.
 
 ### Program design and future oportunities
 
-The programming approach taken allow for a relitively rapid analysis of DNA sequences to be carried out. Since each DNA sequence is analysed, further interrogation of tis dataset is avalable to drill don into the characteristics of each sequence , while the aggregated results provide an overview of all of the DNA seqeunces making up the dataset.
+The programatic approach taken allows for a relatively rapid analysis of DNA sequences to be carried out. Since each DNA sequence is analysed independently, further interrogation of this dataset is avalable to drill down into the characteristics of each DNA sequence;  while the aggregated results provide an overview of all of the DNA seqeunces making up the dataset.
 
 
