@@ -18,7 +18,7 @@ MIN_PALINDROME_LENGTH = 20
 def find_top_values(results: List[tuple], limit: int) -> List[tuple]:
     """
         Sorts a collection of tuples and return the
-        top limit key-value pairs from a dictionary.
+        top limit key-value pairs
 
     Parameters
     ----------
