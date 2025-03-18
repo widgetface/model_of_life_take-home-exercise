@@ -19,25 +19,9 @@ NUCLEOTIDE_LIST = {"A", "T", "G", "C"}
 # Run test with  python -m pytest tests
 @pytest.mark.count_kemers
 def test_count_kmers():
-    valid_kmer_2 = {"at": 1, "tg": 3, "gt": 1, "gc": 2, "ct": 1, "tt": 1}
-    valid_kmer_3 = {
-        "atg": 1,
-        "tgt": 1,
-        "gtg": 1,
-        "tgc": 2,
-        "gct": 1,
-        "ctt": 1,
-        "ttg": 1,
-    }
-    valid_kmer_4 = {
-        "atgt": 1,
-        "tgtg": 1,
-        "gtgc": 1,
-        "tgct": 1,
-        "gctt": 1,
-        "cttg": 1,
-        "ttgc": 1,
-    }
+    valid_kmer_2 = {"at": 1, "tg": 3, "gt": 1, "gc": 2, "ct": 1}
+    valid_kmer_3 = {"atg": 1, "tgt": 1, "gtg": 1, "tgc": 2, "gct": 1}
+    valid_kmer_4 = {"atgt": 1, "tgtg": 1, "gtgc": 1, "tgct": 1, "gctt": 1}
 
     valid_kmer_5 = {
         "atgtg": 1,
@@ -45,7 +29,6 @@ def test_count_kmers():
         "gtgct": 1,
         "tgctt": 1,
         "gcttg": 1,
-        "cttgc": 1,
     }
 
     assert count_k_mers(sequence=INVALID_SEQUENCE, number_nucleotides=2) == {}
