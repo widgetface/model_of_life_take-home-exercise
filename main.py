@@ -1,3 +1,24 @@
+"""DNA Sequence analysis script
+
+This script allows the user to load a provided DNA sequence dataset and
+analyse those sequences for:
+
+1. Number of each nucleotide (adenine, thymine, guanine, cytosine).
+
+2. Identification of the top 5 most common k-mers for k=2, 3, 4, and 5.
+
+3. Longest palindromic sequence of 20 base pairs or over.
+
+4. Analysis of the longest "GC" and "AT" continuous sequences.
+
+5. Aggregation of DNA sequence results for steps 1, 2, 3.
+
+6. Generation of a simple markdown report.
+
+The script relies of core Python libraries and doesn't require any
+dependencies to be installed.
+"""
+
 import json
 import os
 from typing import List, TypedDict
@@ -17,13 +38,14 @@ from utils.sequence_utils import (
 from utils.data_types import DNASequence, SequenceStatistics
 
 
+# Constants
 NUCLEOTIDE_LIST = {"A", "T", "G", "C"}
 PALINDROME_MIN_LENGTH = 20
 INDEX = 0
 FILE_PATH = "./data/dna_sequences.json"
 REPORT_FILE_PATH = "./report/dna_statistics_report.md"
 
-# The sequence analaysis is a CPU bound task:
+
 # Using os.cpu_count() // 2 reduce load on system.
 num_cores = os.cpu_count() // 2
 
@@ -35,6 +57,13 @@ class DNASequenceData(TypedDict):
 
 
 def initialise_sequence_statistics() -> SequenceStatistics:
+    """Creates a SequenceStatistics dict
+
+    Returns
+    -------
+    SequenceStatistics
+
+    """
     seq_stats = {
         "total_adenine_count": 0,
         "total_thymine_count": 0,
@@ -53,15 +82,39 @@ def initialise_sequence_statistics() -> SequenceStatistics:
 
 
 def load_sequences_file(file_path: str) -> DNASequenceData:
+    """Loads a JSON file and parses a JSON (JavaScript Object Notation)
+      string and converts it into a Python dictionary
+
+    Parameters
+    ----------
+    file_path : str
+        The file location.
+
+
+    Returns
+    -------
+    DNASequenceData
+
+    """
     with open(file_path) as f:
         data = json.load(f)
         return data
 
 
-# Example task function
+def process_data(sequence: str) -> DNASequence:
+    """Analyses the DNA sequence
+
+    Parameters
+    ----------
+    sequence : str
+        The DNA sequence
 
 
-def process_data(sequence: str):
+    Returns
+    -------
+    DNASequenceData
+
+    """
     nucleotide_counts = count_nucleotides(sequence=sequence)
     k_mers = {}
 
@@ -81,10 +134,22 @@ def process_data(sequence: str):
         k_mers=k_mers,
     )
 
-    # Function to run multiprocessing
+
+def process_data_parallel(data: List[str]):
+    """Process DNA sequences. Uses multiprocessing.Pool
+    to process all the sequences in a collection List[str]
+
+    Parameters
+    ----------
+    data : List[str]
+         A list of DNA sequences
 
 
-def process_data_parallel(data):
+    Returns
+    -------
+    List[DNASequenceData]
+
+    """
     with Pool(processes=num_cores) as pool:
         results = pool.map(process_data, data)
     return results
@@ -93,6 +158,19 @@ def process_data_parallel(data):
 def calculate_dna_sequence_statistics(
     data: List[DNASequence], total_count: int, invalid_count: int
 ) -> SequenceStatistics:
+    """Aggregate DNA sequence data
+
+    Parameters
+    ----------
+    data : List[DNASequence]
+        A list of DNASequences
+
+
+    Returns
+    -------
+    SequenceStatistics
+
+    """
     seq_doc = initialise_sequence_statistics()
     seq_doc["total_sequences_count"] = total_count
     seq_doc["invalid_sequences_count"] = invalid_count
@@ -138,7 +216,6 @@ if __name__ == "__main__":
     total_count = sequence_data["num_sequences"]
     invalid_count = total_count - len(cleaned_sequence_data)
 
-    # Using multiprocessing
     start_time = time.time()
     results = process_data_parallel(cleaned_sequence_data)
 
@@ -146,4 +223,5 @@ if __name__ == "__main__":
         data=results, total_count=total_count, invalid_count=invalid_count
     )
     generate_report(sequence_stats=seq_statistics, output_path=REPORT_FILE_PATH)
-    print("Time taken using multiprocessing:", time.time() - start_time)
+
+    #  print("Time taken to run analysis:", time.time() - start_time)
