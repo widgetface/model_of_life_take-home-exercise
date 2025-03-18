@@ -38,9 +38,6 @@ class DNASequence(NamedTuple):
     k_mers: K_MERS = {}
 
 
-# class MetaData(NamedTuple):
-
-
 class SequenceStatistics(TypedDict):
     total_adenine_count: int = 0
     total_thymine_count: int = 0
