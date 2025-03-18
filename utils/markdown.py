@@ -52,9 +52,7 @@ class MarkdownGenerator:
         """
 
         for i, items in enumerate(list(rows)):
-            print(items)
             self.content += "| " + "| ".join(items) + "\n"
-            print(self.content)
             if i == 0:
                 for item in items:
                     self.content += "| "
