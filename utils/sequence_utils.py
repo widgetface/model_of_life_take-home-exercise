@@ -18,7 +18,7 @@ MIN_PALINDROME_LENGTH = 20
 def find_top_values(results: List[tuple], limit: int) -> List[tuple]:
     """
         Sorts a collection of tuples and return the
-        top limit key-value pairs from a dictionary,
+        top limit key-value pairs from a dictionary.
 
     Parameters
     ----------
@@ -51,7 +51,7 @@ def clean_sequence_data(
     letter_list: int
         List of letters e.g. ["A", "T", "G","C"]
     min_length: int
-        length threshold
+        length threshold of sequence string
     Returns
     -------
     List(str)
@@ -88,7 +88,7 @@ def find_motif(sequence: str, motif: str) -> List[str]:
     sequence: str
 
     motif: str
-        The motif to find
+        The motif to find e.g "GC"
 
     Returns
     -------
@@ -113,7 +113,8 @@ def find_motif(sequence: str, motif: str) -> List[str]:
 
 
 def reverse_complement(sequence: str) -> str:
-    """Returns the reverse complement of a DNA sequence.
+    """
+    Returns the reverse complement of a DNA sequence.
 
     Parameters
     ----------
@@ -125,14 +126,15 @@ def reverse_complement(sequence: str) -> str:
       The complement of the sequence string
     """
     complement = {"A": "T", "T": "A", "C": "G", "G": "C"}
-    return "".join(complement[base] for base in reversed(seq))
+    return "".join(complement[base] for base in reversed(sequence))
 
 
 def find_longest_dna_palindrome(sequence, min_length=20):
     """
-    Finds all palindromes in a DNA sequence of at least min_length using precomputed reverse complement.
+    Finds all palindromes in a DNA sequence of at least min_length
+    using precomputed reverse complement.
 
-        Parameters
+    Parameters
     ----------
     sequence: str
         A sequence string
@@ -143,7 +145,7 @@ def find_longest_dna_palindrome(sequence, min_length=20):
     Returns
     -------
     longest: dict
-      The longest palindrome dict
+      The longest palindrome dict ( {"palindrome_seq": "", "palindrome_length": 0})
     """
     longest = {"palindrome_seq": "", "palindrome_length": 0}
     seq_length = len(sequence)
@@ -170,7 +172,7 @@ def count_nucleotides(sequence: str) -> NucleotideCount:
     Lowercases and removes leading and trailing whitespace
     from the string. Counts all unique charcters in string (sequence)
 
-        Parameters
+    Parameters
     ----------
     sequence: str
         A sequence string
@@ -178,7 +180,7 @@ def count_nucleotides(sequence: str) -> NucleotideCount:
     Returns
     -------
     defaultdict
-        A defaultdict ith maps of counts for each unique character
+        A defaultdict which maps of counts for each unique character
         in the sequence
     """
     return defaultdict(int, Counter(sequence.lower().strip()))
@@ -193,14 +195,14 @@ def update_nucleotide_counts(
     Parameters
     ----------
     nucleotide_counts: NucleotideCounts
-        A set of nucleotide counts
+        A set of nucleotide counts object
     sequence_stats: SequenceStatistics
         A SequenceStatistics object
 
     Returns
     -------
     SequenceStatistics
-        An update SequenceStatistics object.
+        An updated SequenceStatistics object.
     """
     sequence_stats["meta_data"]["adenine_count"] += nucleotide_counts.get("a", 0)
     sequence_stats["meta_data"]["thymine_count"] += nucleotide_counts.get("t", 0)
@@ -256,6 +258,21 @@ def create_dna_sequence_record(
 
 
 def count_k_mers(sequence, number_nucleotides) -> Dict[str, int]:
+    """
+    Find up top 5 k-mers of a specified size in a sequence string
+
+    Parameters
+    ----------
+    sequence: str
+        A DNA sequence
+    number_nucleotides: int
+        Size of k-mer
+
+    Returns
+    -------
+     dict
+      A dictionary of the top 5 k-mers Dict[str: int]
+    """
     oligo_counts = defaultdict(int)
     sequence = sequence.lower().strip()
     sequence_length = len(sequence)
@@ -270,14 +287,45 @@ def count_k_mers(sequence, number_nucleotides) -> Dict[str, int]:
 
 
 def update_k_mer_counts(current_counts: dict, new_counts: dict) -> Dict:
+    """
+    Update k-mer counts.Counts updates all counts of
+    unique k-mers in string
+
+    Parameters
+    ----------
+    current_counts: dict
+        A dictionary of k-mer counts
+    new_counts: int
+        A dictionary of k-mer counts
+
+    Returns
+    -------
+     dict
+      A dictionary of the updated k-mer counts
+    """
     current_counts = Counter(current_counts)
     current_counts.update(new_counts)
     return dict(current_counts)
 
 
-def validate_sequence(
-    sequence: List[str], letter_list: Set[str], min_length=2
-) -> List[str]:
+def validate_sequence(sequence: str, letter_list: Set[str], min_length=2) -> List[str]:
+    """
+    Check a sequence string letters are all one of letters in
+    letters_list and above the min_length
+
+    Parameters
+    ----------
+    sequence: str
+        A sequence string
+    letter_list: Set[str]
+        A set of unique letters e.g. ("A","T","G", "C")
+    min_length: int
+        A minimum length for the sequence string to exceed
+    Returns
+    -------
+    bool
+        The sequence string is validated (True) else (False)
+    """
     seen_list = []
     seen = seen_list.append
     # Check if sequence is long enough and contains only valid letters
@@ -292,6 +340,20 @@ def validate_sequence(
 def create_palindrome_rows(
     header: List[str], palindromes: List[Palindrome]
 ) -> List[List[str]]:
+    """
+    Create a list of lists of strings
+
+    Parameters
+    ----------
+    header: List[str]
+        A list of strings (header for a markdon table)
+    palndromes:List[Palidrome]
+        a list of Palindrome objects
+    Returns
+    -------
+    rows: List[List[str]]
+        A list of lists of strings
+    """
     rows = []
     rows.append(header)
     for palindrome in palindromes:
@@ -302,6 +364,20 @@ def create_palindrome_rows(
 
 
 def create_k_mer_rows(header: List[str], kmers: List[tuple]) -> List[List[str]]:
+    """
+    Create a list of lists of tuples
+
+    Parameters
+    ----------
+    header: List[str]
+        A list of strings (header for a markdon table)
+    kmers: List[tuples]
+        A list of tuples
+    Returns
+    -------
+    rows: List[List[str]]
+        A list of lists of strings
+    """
     rows = []
     rows.append(header)
     for k_mer in kmers:
@@ -310,7 +386,22 @@ def create_k_mer_rows(header: List[str], kmers: List[tuple]) -> List[List[str]]:
     return rows
 
 
-def generate_report(sequence_stats: SequenceStatistics, output_path: str):
+def generate_report(sequence_stats: SequenceStatistics, output_path: str) -> None:
+    """
+     Uses the MarkdonGenerator class to create a markdon document.
+
+    Parameters
+    ----------
+    sequence_stats: SequenceStatistics
+
+    output_path:str
+        A path for a file tp save markdon document to
+
+    Returns
+    -------
+        None
+    """
+
     md = MarkdownGenerator()
     md.add_header("DNA Statistics Report")
     md.add_linebreak()
