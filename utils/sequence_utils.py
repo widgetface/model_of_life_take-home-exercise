@@ -15,13 +15,52 @@ AT_RUN_MOTIF = "AT"
 MIN_PALINDROME_LENGTH = 20
 
 
-def find_top_values(results: K_MERS, limit: int) -> List[tuple]:
+def find_top_values(results: List[tuple], limit: int) -> List[tuple]:
+    """
+        Sorts a collection of tuples and return the
+        top limit key-value pairs from a dictionary,
+
+    Parameters
+    ----------
+    results: List[tuple]
+        List of tuples
+    limit: int
+        Number of dicts to return
+
+    Returns
+    -------
+    List(tuple)
+
+    """
+
     return sorted(results.items(), key=lambda item: item[1], reverse=True)[:limit]
 
 
 def clean_sequence_data(
     sequences: List[str], letter_list=None, min_length=2
 ) -> List[str]:
+    """
+        Removes any sequences which are:
+        1. Shorter than the min_length
+        2. Not all letters in sequence in the letter_list
+
+    Parameters
+    ----------
+    sequences: List[str]
+        List of sequences
+    letter_list: int
+        List of letters e.g. ["A", "T", "G","C"]
+    min_length: int
+        length threshold
+    Returns
+    -------
+    List(str)
+        List of seqeuences
+        1. Longer than the min_length
+        2. All letters in sequence in the letter_list
+
+    """
+
     if letter_list is None:
         letter_list = {"A", "T", "G", "C"}
     else:
@@ -40,6 +79,22 @@ def clean_sequence_data(
 
 
 def find_motif(sequence: str, motif: str) -> List[str]:
+    """
+        Finds motifs within a sequence and returns the longest
+        run of that motif
+
+    Parameters
+    ----------
+    sequence: str
+
+    motif: str
+        The motif to find
+
+    Returns
+    -------
+      The longest span of the motif found in a sequence
+
+    """
     positions = [
         i for i in range(len(sequence) - 1) if sequence[i : i + len(motif)] == motif
     ]
@@ -57,24 +112,44 @@ def find_motif(sequence: str, motif: str) -> List[str]:
     return max(seen) if len(seen) > 0 else 0
 
 
-def reverse_complement(seq):
-    """Returns the reverse complement of a DNA sequence."""
+def reverse_complement(sequence: str) -> str:
+    """Returns the reverse complement of a DNA sequence.
+
+    Parameters
+    ----------
+    sequence: str
+        A sequence string to generate its complement string from
+
+    Returns
+    -------
+      The complement of the sequence string
+    """
     complement = {"A": "T", "T": "A", "C": "G", "G": "C"}
     return "".join(complement[base] for base in reversed(seq))
 
 
-def precompute_reverse_complement(sequence):
-    """Precomputes the reverse complement for a DNA sequence."""
-    return reverse_complement(sequence)
-
-
 def find_longest_dna_palindrome(sequence, min_length=20):
-    """Finds all palindromes in a DNA sequence of at least min_length using precomputed reverse complement."""
+    """
+    Finds all palindromes in a DNA sequence of at least min_length using precomputed reverse complement.
+
+        Parameters
+    ----------
+    sequence: str
+        A sequence string
+
+    min_length: int
+        The minimum length of the palindrome
+
+    Returns
+    -------
+    longest: dict
+      The longest palindrome dict
+    """
     longest = {"palindrome_seq": "", "palindrome_length": 0}
     seq_length = len(sequence)
 
     # Precompute the reverse complement of the entire sequence
-    rev_complement = precompute_reverse_complement(sequence)
+    rev_complement = reverse_complement(sequence)
 
     # Loop over all possible subsequences starting from min_length up to the sequence length
     for length in range(min_length, seq_length + 1):
@@ -91,12 +166,42 @@ def find_longest_dna_palindrome(sequence, min_length=20):
 
 
 def count_nucleotides(sequence: str) -> NucleotideCount:
+    """
+    Lowercases and removes leading and trailing whitespace
+    from the string. Counts all unique charcters in string (sequence)
+
+        Parameters
+    ----------
+    sequence: str
+        A sequence string
+
+    Returns
+    -------
+    defaultdict
+        A defaultdict ith maps of counts for each unique character
+        in the sequence
+    """
     return defaultdict(int, Counter(sequence.lower().strip()))
 
 
 def update_nucleotide_counts(
     nucleotide_counts: NucleotideCounts, sequence_stats: SequenceStatistics
 ) -> SequenceStatistics:
+    """
+    Updates the SequenceStatistics nucleotide counts
+
+    Parameters
+    ----------
+    nucleotide_counts: NucleotideCounts
+        A set of nucleotide counts
+    sequence_stats: SequenceStatistics
+        A SequenceStatistics object
+
+    Returns
+    -------
+    SequenceStatistics
+        An update SequenceStatistics object.
+    """
     sequence_stats["meta_data"]["adenine_count"] += nucleotide_counts.get("a", 0)
     sequence_stats["meta_data"]["thymine_count"] += nucleotide_counts.get("t", 0)
     sequence_stats["meta_data"]["guanine_count"] += nucleotide_counts.get("g", 0)
@@ -111,6 +216,27 @@ def create_dna_sequence_record(
     min_length: int,
     k_mers: K_MERS,
 ) -> DNASequence:
+    """
+    Create a DNASequence
+
+    Parameters
+    ----------
+    id: int
+        A unique id
+    nucleotide_counts: NucleotideCounts
+        A NucleotideCounts object
+    sequence: str
+        A DNA sequence
+    min_length: int
+        A minimum length for palindromes
+    k_mers:: K_MERS
+        A K_MERS object of k-mer counts
+
+    Returns
+    -------
+    DNASequence
+        A DNASequence.
+    """
     longest_palindrome = find_longest_dna_palindrome(
         sequence=sequence, min_length=min_length
     )
