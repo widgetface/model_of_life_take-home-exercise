@@ -146,14 +146,14 @@ Without further information on the composition and preparation of the DNA sequen
 
 A short analysis running some of the longest palindromic sequences through the BLAST sequence alignamnt tool ([ref-7](https://blast.ncbi.nlm.nih.gov/Blast.cgi)), using default settings,  indicated many originated from bacteria as shown below:
 
-| Sequence                   | Species | match percent
-| GGCCCGCAAATAATTATTTGCGGGCC | Pantoea dispersa strain (gram negative bacterium) | 100%
-| GCGCGGTAAAATATTTTACCGCGC |Edwardsiella ictaluri (gram negative bacterium) | 100%
-| AAATTTAATATATATTAAATTT | Medioppia subpectinata ( ciliate protozoan)| 100%
-| CCGGCCGCCCCGGGGCGGCCGG | Micromonospora krabiensis (gram positive bacterium) | 100%
-| AAATTTAATATTTTTAAAAATATTAAATTT | Vitis vinifera (grape vine) |100% |
-| GGGCCCGGGGCGCCCCGGGCCC |Thermus thermophilus (gram negative bacterium) | 100%|
-| CGGGGCCCCCCGGGGGGCCCCG|| Pantoea dispersa (gram negative bacterium)| 100% |
+| Sequence | Species | 
+| -------- | ------- | 
+| GGCCCGCAAATAATTATTTGCGGGCC | Pantoea dispersa strain (gram negative bacterium) |
+| GCGCGGTAAAATATTTTACCGCGC | Edwardsiella ictaluri (gram negative bacterium) |
+| AAATTTAATATATATTAAATTT  | Medioppia subpectinata ( ciliate protozoan) |
+| CCGGCCGCCCCGGGGCGGCCGG  | Micromonospora krabiensis (gram positive bacterium) |
+|  CGGGGCCCCCCGGGGGGCCCCG  | Thermus thermophilus (gram negative bacterium) |
+|  CGGGGCCCCCCGGGGGGCCCCG  | Pantoea dispersa (gram negative bacterium) |
 
 Although the sequence alignment analysis is cursory, the results along with the enhanced GC content of the DNA sequences overall may indicate that many or all of the DNA sequences are of bacterial origin.  But more work would be required to establish this assertion.
 
