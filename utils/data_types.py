@@ -1,3 +1,5 @@
+"""Data Types used in type hinting"""
+
 from typing import Dict, List, NamedTuple, TypedDict
 
 
