@@ -16,7 +16,7 @@ INVALID_PALINDROME = "GCAACGTAGCTGG"
 NUCLEOTIDE_LIST = {"A", "T", "G", "C"}
 
 
-# Run test ith  python -m pytest tests
+# Run test with  python -m pytest tests
 @pytest.mark.count_kemers
 def test_count_kmers():
     valid_kmer_2 = {"at": 1, "tg": 3, "gt": 1, "gc": 2, "ct": 1, "tt": 1}
