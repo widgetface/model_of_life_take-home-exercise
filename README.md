@@ -29,11 +29,11 @@ To complete the task provided the following approach as taken. The DNA sequence 
 
 The best function I could come up with to determine of the longest palidromic sequence of a sequence had total time complexity of O(n^3).
 
-To allow the programme to run most efficiently the folloing steps were taken:
+To allow the programme to run most efficiently the following steps were taken:
 
-1. The multiprocessing package was used to enable paralell process of the DNA sequence analysis task.
+1. The multiprocessing package was used to enable parallelization of the anlysis of the DNA sequences.
 
-2. The find_logest_palindrome function pre-computed the complement DNA sequence which reduced the overall time spent determining the longest palidromic sequence.
+2. The find_longest_palindrome function pre-computed the complement DNA sequence which reduced the overall time spent determining the longest palidromic sequence.
 
 3. Code was optimized for speed while trying to maintain good readabilty.
 
@@ -114,11 +114,11 @@ The longest palindrome was 34(bp) and had a sequence of TAAACGGGCCTTAATATATATTAA
 
 ## Analysis of DNA sequence analysis report
 
-1. Of the 200 DNA sequences provided, 8 were found to contain letters other than A,T,G or C. This indicates that in those cases sequencing errors, ambiguous identification or base modifications (e.g 5-methylcytosine (5mC)) may have occurred.
+### Overview of DNA sequences
 
-2. Overall the DNA sequences appear to be enriched in guanine (G) and cytosine (C) bases:
+Of the 200 DNA sequences provided, 8 were found to contain letters other than A,T,G or C. This indicates that in those cases sequencing errors, ambiguous identification or base modifications (e.g 5-methylcytosine (5mC)) may have occurred.
 
-(58281 + 55556)/ 192000 = 59.3% GC content
+Overall the DNA sequences appear to be enriched in guanine (G) and cytosine (C) bases, having a GC content of 59.3% GC ((58281 + 55556)/ 192000).
 
 This could  occur for many reasons including:
 
@@ -128,9 +128,13 @@ This could  occur for many reasons including:
 
 3. Sampling or sequencing bias. For example PCR based sequencing could exhibit GC bias due to the higher probability of primer annealing to those regions ([ref-3](https://pubmed.ncbi.nlm.nih.gov/28060945/)).
 
+### K-mer analysis
+
 The k-mer analysis results for k=4 and k=5 also show that the most common are G, C or GC containing. 
 
-4. The analysis found 16 DNA sequnces where palidromes ere of 20 base pair or over. This finding could occur due to  sequence artifacts which have been found to occur in PCR based sequencing approaches ([ref-4](https://bmcgenomics.biomedcentral.com/articles/10.1186/)). However, if these palidromic sequences are real they could be involved in are involved in a diverse processes that range from bacterial immune responses to the regulation of gene expression ([ref-5](https://www.sciencedirect.com/science/article/abs/pii/B9780128225639000652)). These palindromic sequnces are also often associated with amplified genes in both prokaryotes and eukaryotes ([ref-6](https://academic.oup.com/genetics/article-abstract/161/3/1065/6052570?redirectedFrom=fulltext)). Without further analysis it is difficult to expand more on this finding.
+### Palindrome analysis
+
+The analysis found 16 DNA sequnces where palidromes ere of 20 base pair or over. This finding could occur due to  sequence artifacts which have been found to occur in PCR based sequencing approaches ([ref-4](https://bmcgenomics.biomedcentral.com/articles/10.1186/)). However, if these palidromic sequences are real they could be involved in are involved in a diverse processes that range from bacterial immune responses to the regulation of gene expression ([ref-5](https://www.sciencedirect.com/science/article/abs/pii/B9780128225639000652)). These palindromic sequnces are also often associated with amplified genes in both prokaryotes and eukaryotes ([ref-6](https://academic.oup.com/genetics/article-abstract/161/3/1065/6052570?redirectedFrom=fulltext)). Without further analysis it is difficult to expand more on this finding.
 
 A short analysis running some of the longest palidromic sequences through the BLAST sequence alignamnt tool ([ref-7](https://blast.ncbi.nlm.nih.gov/Blast.cgi)), using default settings,  indicated many originated from bacteria and examples are provided below:
 
