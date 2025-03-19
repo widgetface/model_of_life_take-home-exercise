@@ -386,7 +386,7 @@ def create_k_mer_rows(header: List[str], kmers: List[tuple]) -> List[List[str]]:
 
 def generate_report(sequence_stats: SequenceStatistics, output_path: str) -> None:
     """
-    Uses the MarkdonGenerator class to create a markdon document.
+    Uses the MarkdownGenerator class to create a markdown document.
 
     Parameters
     ----------
