@@ -161,6 +161,6 @@ Although the sequence alignment analysis is cursory, the results along with the 
 
 ### Program design and future opportunities
 
-The programatic approach taken allows for a relatively rapid analysis of DNA sequences to be carried out. Since each DNA sequence is analysed independently, further interrogation of this dataset is avalable to drill down into the characteristics of each DNA sequence;  while the aggregated results provide an overview of all of the DNA seqeunces making up the dataset.
+The programatic approach taken allows for a relatively rapid analysis of DNA sequences to be carried out. Since each DNA sequence is analysed independently, further interrogation of this dataset is avalable to drill down into the characteristics of each DNA sequence;  while the aggregated results provide an overview of all of the DNA sequences making up the dataset.
 
 
