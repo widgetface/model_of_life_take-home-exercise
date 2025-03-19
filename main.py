@@ -57,7 +57,8 @@ class DNASequenceData(TypedDict):
 
 
 def initialise_sequence_statistics() -> SequenceStatistics:
-    """Creates a SequenceStatistics dict
+    """
+    Creates a SequenceStatistics dict
 
     Returns
     -------
@@ -82,8 +83,9 @@ def initialise_sequence_statistics() -> SequenceStatistics:
 
 
 def load_sequences_file(file_path: str) -> DNASequenceData:
-    """Loads a JSON file and parses a JSON (JavaScript Object Notation)
-      string and converts it into a Python dictionary
+    """
+    Loads a JSON file and parses a JSON (JavaScript Object Notation)
+    string and converts it into a Python dictionary
 
     Parameters
     ----------
@@ -102,7 +104,8 @@ def load_sequences_file(file_path: str) -> DNASequenceData:
 
 
 def process_data(sequence: str) -> DNASequence:
-    """Analyses the DNA sequence
+    """
+    Analyses the DNA sequence
 
     Parameters
     ----------
@@ -136,7 +139,8 @@ def process_data(sequence: str) -> DNASequence:
 
 
 def process_data_parallel(data: List[str]):
-    """Process DNA sequences. Uses multiprocessing.Pool
+    """
+    Process DNA sequences. Uses multiprocessing.Pool
     to process all the sequences in a collection List[str]
 
     Parameters
@@ -158,7 +162,8 @@ def process_data_parallel(data: List[str]):
 def calculate_dna_sequence_statistics(
     data: List[DNASequence], total_count: int, invalid_count: int
 ) -> SequenceStatistics:
-    """Aggregate DNA sequence data
+    """
+    Aggregate DNA sequence data
 
     Parameters
     ----------
