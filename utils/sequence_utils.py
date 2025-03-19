@@ -17,20 +17,20 @@ MIN_PALINDROME_LENGTH = 20
 
 def find_top_values(results: List[tuple], limit: int) -> List[tuple]:
     """
-        Sorts a collection of tuples and return the
-        top limit key-value pairs
+        Sorts a collection of tuples and returns the
+        top limit tuples by the second tuple value
 
     Parameters
     ----------
     results: List[tuple]
         List of tuples
     limit: int
-        Number of dicts to return
+        Number of tuples to return
 
     Returns
     -------
     List(tuple)
-
+        List of tuples
     """
 
     return sorted(results.items(), key=lambda item: item[1], reverse=True)[:limit]
@@ -40,7 +40,7 @@ def clean_sequence_data(
     sequences: List[str], letter_list=None, min_length=2
 ) -> List[str]:
     """
-        Removes any sequences which are:
+        Removes any sequence strings which are:
         1. Shorter than the min_length
         2. Not all letters in sequence in the letter_list
 
@@ -49,15 +49,15 @@ def clean_sequence_data(
     sequences: List[str]
         List of sequences
     letter_list: int
-        List of letters e.g. ["A", "T", "G","C"]
+        List of letters if None = ["A", "T", "G","C"]
     min_length: int
         length threshold of sequence string
     Returns
     -------
     List(str)
-        List of seqeuences
+        List of seqeuences strings which are
         1. Longer than the min_length
-        2. All letters in sequence in the letter_list
+        2. All letters in sequence string in the letter_list
 
     """
 
@@ -88,7 +88,7 @@ def find_motif(sequence: str, motif: str) -> List[str]:
     sequence: str
 
     motif: str
-        The motif to find e.g "GC"
+        The motif to find e.g. "GC"
 
     Returns
     -------
@@ -132,7 +132,6 @@ def reverse_complement(sequence: str) -> str:
 def find_longest_dna_palindrome(sequence, min_length=20):
     """
     Finds all palindromes in a DNA sequence of at least min_length
-    using precomputed reverse complement.
 
     Parameters
     ----------
@@ -170,7 +169,7 @@ def find_longest_dna_palindrome(sequence, min_length=20):
 def count_nucleotides(sequence: str) -> NucleotideCount:
     """
     Lowercases and removes leading and trailing whitespace
-    from the string. Counts all unique charcters in string (sequence)
+    from the string. Counts all unique characters in string.
 
     Parameters
     ----------
@@ -179,9 +178,8 @@ def count_nucleotides(sequence: str) -> NucleotideCount:
 
     Returns
     -------
-    defaultdict
-        A defaultdict which maps of counts for each unique character
-        in the sequence
+        A defaultdict of type NucleotideCount which maps of counts
+        for each unique character in the sequence string
     """
     return defaultdict(int, Counter(sequence.lower().strip()))
 
@@ -228,7 +226,7 @@ def create_dna_sequence_record(
     nucleotide_counts: NucleotideCounts
         A NucleotideCounts object
     sequence: str
-        A DNA sequence
+        A DNA sequence string
     min_length: int
         A minimum length for palindromes
     k_mers:: K_MERS
@@ -237,7 +235,7 @@ def create_dna_sequence_record(
     Returns
     -------
     DNASequence
-        A DNASequence.
+        A DNASequence object.
     """
     longest_palindrome = find_longest_dna_palindrome(
         sequence=sequence, min_length=min_length
@@ -266,7 +264,7 @@ def count_k_mers(sequence, number_nucleotides) -> Dict[str, int]:
     sequence: str
         A DNA sequence
     number_nucleotides: int
-        Size of k-mer
+        Size of k-mer to find
 
     Returns
     -------
@@ -328,7 +326,7 @@ def validate_sequence(sequence: str, letter_list: Set[str], min_length=2) -> Lis
     """
     seen_list = []
     seen = seen_list.append
-    # Check if sequence is long enough and contains only valid letters
+
     if len(sequence) > min_length and all(letter in letter_list for letter in sequence):
         if sequence not in seen_list:
             seen(sequence)
@@ -347,7 +345,7 @@ def create_palindrome_rows(
     ----------
     header: List[str]
         A list of strings (header for a markdon table)
-    palndromes:List[Palidrome]
+    palindromes:List[Palidrome]
         a list of Palindrome objects
     Returns
     -------
@@ -365,12 +363,12 @@ def create_palindrome_rows(
 
 def create_k_mer_rows(header: List[str], kmers: List[tuple]) -> List[List[str]]:
     """
-    Create a list of lists of tuples
+    Create a list of lists of strings
 
     Parameters
     ----------
     header: List[str]
-        A list of strings (header for a markdon table)
+        A list of strings
     kmers: List[tuples]
         A list of tuples
     Returns
@@ -388,14 +386,14 @@ def create_k_mer_rows(header: List[str], kmers: List[tuple]) -> List[List[str]]:
 
 def generate_report(sequence_stats: SequenceStatistics, output_path: str) -> None:
     """
-     Uses the MarkdonGenerator class to create a markdon document.
+    Uses the MarkdonGenerator class to create a markdon document.
 
     Parameters
     ----------
     sequence_stats: SequenceStatistics
 
     output_path:str
-        A path for a file tp save markdon document to
+        A path for a file tp save markdown document to
 
     Returns
     -------
@@ -452,7 +450,6 @@ def generate_report(sequence_stats: SequenceStatistics, output_path: str) -> Non
             palindrome_rows = create_palindrome_rows(
                 ["Palindrome sequence", "length(bp)"], palindromes
             )
-            print(palindrome_rows)
             md.add_table(palindrome_rows)
     else:
         md.add_text("No palindromes over 20 base pairs were detected")
