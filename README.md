@@ -11,13 +11,15 @@ To run the tests, please install pytest in a virtual environment and run the tes
 
 ## General programming approach
 
-To complete the task provided the following approach as taken. The file provided was loaded into the programme as a JSON object and the sequences checked for length and composition. The DNA sequences were then analysed for:
+To complete the task provided the following approach was taken.
+
+The file provided was loaded into the programme as a JSON object and the sequences checked for length and composition. The DNA sequences were then analysed for:
 
 1. Number of each nucleotide (adenine, thymine, guanine, cytosine).
 
 2. Identification of the top 5 most common k-mers for k=2, 3, 4, and 5.
 
-3. Longest palindromic sequence of 20 base pairs or over as defined by a forward strand sequence (5-3) equal to a reverse strand sequence (3-5) complement being a palidrome of equal of over 20 base pairs. 
+3. Longest palindromic sequence of 20 base pairs or over as defined by a forward strand sequence (5-3) equal to a reverse strand sequence (3-5) complement being a palindrome of equal of over 20 base pairs. 
 
 4. Some analysis of the longest "GC" and "AT" continuous sequences was also carried out.
 
@@ -124,7 +126,7 @@ Overall the DNA sequences appear to be enriched in guanine (G) and cytosine (C) 
 
 This could  occur for many reasons including:
 
-1. Species specific composition of the DNA sequences originating from a particular species or genus. For example some microbial gemnomes tend to exhibit high GC contents,  but the causes of this variation have yet to be resolved ([ref 1]( https://www.sciencedirect.com/topics/)).
+1. Species specific composition of the DNA sequences originating from a particular species or genus. For example some microbial genomes tend to exhibit high GC contents,  but the causes of this variation have yet to be resolved ([ref 1]( https://www.sciencedirect.com/topics/)).
 
 2. Enrichment of genomic regions in GC. Promoter regions for example have a tendency to high GC content ([ref-2](https://pmc.ncbi.nlm.nih.gov/articles/PMC3514669/)).
 
@@ -138,13 +140,13 @@ The k-mer analysis results also show that the most common are  G, C or GC contai
 
 The analysis found 16 DNA sequences where palindromes are of 20 base pairs or over. This finding could occur due to sequencing artifacts which have been found to occur in PCR based sequencing approaches ([ref-4](https://bmcgenomics.biomedcentral.com/articles/10.1186/)). 
 
-However, if these palidromic sequences are real they could be involved in a diverse range of processes, including  bacterial immune responses to the regulation of gene expression in eukaryotes ([ref-5](https://www.sciencedirect.com/science/article/abs/pii/B9780128225639000652)). 
+However, if these palindromic sequences are real they could be involved in a diverse range of processes, from bacterial immune responses to the regulation of gene expression in eukaryotes ([ref-5](https://www.sciencedirect.com/science/article/abs/pii/B9780128225639000652)). 
 
 Palindromic sequences are also often associated with amplified genes in both prokaryotes and eukaryotes ([ref-6](https://academic.oup.com/genetics/article-abstract/161/3/1065/6052570?redirectedFrom=fulltext)). 
 
 Without further information on the composition and preparation of the DNA sequence dataset and further analysis, it is difficult to expand more on this finding.
 
-A short analysis running some of the longest palindromic sequences through the BLAST sequence alignamnt tool ([ref-7](https://blast.ncbi.nlm.nih.gov/Blast.cgi)), using default settings,  indicated many originated from bacteria as shown below:
+A short analysis running some of the longest palindromic sequences through the BLAST sequence alignment tool ([ref-7](https://blast.ncbi.nlm.nih.gov/Blast.cgi)), using default settings,  indicated many originated from bacteria as shown below:
 
 | Sequence | Species | 
 | -------- | ------- | 
